@@ -3,7 +3,25 @@ var bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const app = express();
 const port = 3002;
+const cors = require("cors");
 
+var whitelist = [
+  "http://localhost:3000",
+  "http://starostin.id.lv.s3-website-eu-west-1.amazonaws.com"
+];
+
+var corsConf = {
+  origin: (origin, callback) => {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
+
+app.use(cors(corsConf));
 app.use(bodyParser.json()); // to support JSON-encoded bodies
 app.use(
   bodyParser.urlencoded({
