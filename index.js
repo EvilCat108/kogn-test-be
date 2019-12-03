@@ -7,7 +7,9 @@ const cors = require("cors");
 
 var whitelist = [
   "http://localhost:3000",
-  "http://starostin.id.lv.s3-website-eu-west-1.amazonaws.com"
+  "http://starostin.id.lv.s3-website-eu-west-1.amazonaws.com",
+  "starostin.id.lv",
+  "http://starostin.id.lv"
 ];
 
 var corsConf = {
